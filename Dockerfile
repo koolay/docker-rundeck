@@ -22,6 +22,8 @@ RUN curl -o /tmp/rundeck-$RUNDECK_VERSION.deb -fSL http://dl.bintray.com/rundeck
     && dpkg -i rundeck-$RUNDECK_VERSION.deb \
     && rm -rf /tmp/*
 
+COPY ./config/rundeck /etc/rundeck
+
 ##################### confd #########################
 RUN curl -o /bin/confd -fSL https://github.com/kelseyhightower/confd/releases/download/v0.12.0-alpha3/confd-0.12.0-alpha3-linux-amd64 \
     && chmod +x /bin/confd
