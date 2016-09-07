@@ -1,0 +1,15 @@
+[template]
+src = "rundeck-config.properties.tmpl"
+dest = "/etc/rundeck/rundeck-config.properties"
+keys = [
+    "/server/hostname",
+    "/server/port",
+    "/log/level",
+    "/storage/type",
+    "/storage/path",
+    "/db/username",
+    "/db/password"
+    "/db/dbname",
+    "/db/host"
+    "/db/port"
+]

@@ -1,0 +1,7 @@
+[template]
+src = "profile.tmpl"
+dest = "/etc/rundeck/profile"
+keys = [
+    "/server/port",
+    "/server/https/port"
+]

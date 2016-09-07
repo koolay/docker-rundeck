@@ -4,8 +4,8 @@ export RDECK_BASE
 JAVA_CMD=java
 RUNDECK_TEMPDIR=/tmp/rundeck
 
-RDECK_HTTP_PORT=4440
-RDECK_HTTPS_PORT=4443
+RDECK_HTTP_PORT={{getv "/server/port" 4440}}
+RDECK_HTTPS_PORT={{getv "/server/https/port" 4443}}
 
 #
 # If JAVA_HOME is set, then add it to home and set JAVA_CMD to use the version specified in that

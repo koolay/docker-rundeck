@@ -22,6 +22,7 @@ RUN curl -o /tmp/rundeck-$RUNDECK_VERSION.deb -fSL http://dl.bintray.com/rundeck
     && dpkg -i rundeck-$RUNDECK_VERSION.deb \
     && rm -rf /tmp/*
 
-ADD ./bootstrap.sh /etc/my_init.d/
+COPY ./config/confd /etc/confd
+COPY ./bootstrap.sh /etc/my_init.d/
 RUN chmod +x /etc/my_init.d/bootstrap.sh
 CMD ["/sbin/my_init"]

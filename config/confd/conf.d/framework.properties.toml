@@ -1,0 +1,10 @@
+[template]
+src = "framework.properties.tmpl"
+dest = "/etc/rundeck/framework.properties"
+keys = [
+    "/server/name",
+    "/server/hostname",
+    "/server/port",
+    "/server/username",
+    "/server/password"
+]
