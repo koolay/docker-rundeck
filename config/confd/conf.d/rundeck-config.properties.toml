@@ -8,7 +8,7 @@ keys = [
     "/storage/type",
     "/storage/path",
     "/db/username",
-    "/db/password"
+    "/db/password",
     "/db/dbname",
     "/db/host",
     "/db/port"
