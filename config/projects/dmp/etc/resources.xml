@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project>
+  <node name="test-node" description="node for test" tags="" hostname="120.76.78.3" osArch="x86_64" osFamily="linux" osName="centos"  username="rundeck"/>
+</project>
