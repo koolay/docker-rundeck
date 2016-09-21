@@ -29,6 +29,8 @@ RUN curl -o /bin/confd -fSL https://github.com/kelseyhightower/confd/releases/do
     && chmod +x /bin/confd
 COPY ./config/confd /etc/confd
 
+ENV TZ=Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 COPY ./bootstrap.sh /etc/my_init.d/
 RUN chmod +x /etc/my_init.d/bootstrap.sh
 CMD ["/sbin/my_init"]
