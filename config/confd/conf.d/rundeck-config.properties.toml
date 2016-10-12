@@ -4,6 +4,7 @@ dest = "/etc/rundeck/rundeck-config.properties"
 keys = [
     "/server/hostname",
     "/server/port",
+    "/grails/url",
     "/log/level",
     "/storage/type",
     "/storage/path",
