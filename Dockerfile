@@ -16,11 +16,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 
 ##################### install rundeck #################
-ENV RUNDECK_VERSION 2.6.9-1-GA
-RUN curl -o /tmp/rundeck-$RUNDECK_VERSION.deb -fSL http://dl.bintray.com/rundeck/rundeck-deb/rundeck-$RUNDECK_VERSION.deb \
-    && cd /tmp \
-    && dpkg -i rundeck-$RUNDECK_VERSION.deb \
-    && rm -rf /tmp/*
+ENV RUNDECK_VERSION 2.6.9
+ENV RUNDECK_BASE /var/rundeck
+ENV RUNDECK_BIN $RUNDECK_BASE/rundeck-launcher-$RUNDECK_VERSION.jar
+RUN mkdir $RUNDECK_BASE && curl -o $RUNDECK_BIN -fSL http://dl.bintray.com/rundeck/rundeck-maven/rundeck-launcher-$RUNDECK_VERSION.jar
+
+RUN mkdir /etc/service/rundeck
+COPY ./rundeck.sh /etc/service/rundeck/run
+RUN chmod +x /etc/service/rundeck/run
 
 COPY ./config/rundeck /etc/rundeck
 
@@ -29,7 +32,7 @@ RUN curl -o /bin/confd -fSL https://github.com/kelseyhightower/confd/releases/do
     && chmod +x /bin/confd
 COPY ./config/confd /etc/confd
 
-ENV TZ Asia/Shanghai
+ENV TZ=Asia/Shanghai
 ENV JAVA_OPTIONS -Duser.timezone=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 COPY ./bootstrap.sh /etc/my_init.d/
