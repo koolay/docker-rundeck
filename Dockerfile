@@ -18,7 +18,14 @@ ENV RUNDECK_BASE /var/rundeck
 ENV RUNDECK_BIN $RUNDECK_BASE/rundeck-launcher-$RUNDECK_VERSION.jar
 RUN mkdir $RUNDECK_BASE && curl -o $RUNDECK_BIN -fSL http://dl.bintray.com/rundeck/rundeck-maven/rundeck-launcher-$RUNDECK_VERSION.jar
 
-RUN mkdir /etc/service/rundeck && useradd -r -s /bin/false rundeck
+RUN mkdir /etc/service/rundeck \
+    && useradd -r -s /bin/false rundeck \
+    && mkdir -p /var/lib/rundeck \
+    && chown -R rundeck /var/lib/rundeck \
+    && chown -R rundeck /var/rundeck \
+    && export PATH=$PATH:$RUNDECK_BASE/tools/bin \
+    && export MANPATH=$MANPATH:$RUNDECK_BASE/docs/man
+
 COPY ./rundeck.sh /etc/service/rundeck/run
 RUN chmod +x /etc/service/rundeck/run
 
