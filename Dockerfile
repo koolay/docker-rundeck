@@ -18,6 +18,7 @@ ENV RDECK_BASE /var/rundeck
 ENV RDECK_BIN $RDECK_BASE/rundeck-launcher-$RDECK_VERSION.jar
 RUN mkdir $RDECK_BASE && curl -o $RDECK_BIN -fSL http://dl.bintray.com/rundeck/rundeck-maven/rundeck-launcher-$RDECK_VERSION.jar
 
+RUN java -jar $RDECK_BIN --installonly
 RUN mkdir /etc/service/rundeck \
     && useradd -r -s /bin/false rundeck \
     && mkdir -p /var/lib/rundeck \
