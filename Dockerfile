@@ -1,8 +1,5 @@
 FROM phusion/baseimage:0.9.19
 
-# change source
-RUN sed -i 's/http:\/\//http:\/\/cn\./g' /etc/apt/sources.list
-
 # Default to UTF-8 file.encoding
 ENV LANG C.UTF-8
 #################### install jdk #######################
